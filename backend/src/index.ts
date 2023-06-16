@@ -1,12 +1,10 @@
 import express, {Express} from 'express';
-import routes from './routes';
+import routes from '../src/routes/index';
 import connection from "./connection";
 const app: Express = express();
 
-
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-
 
 app.use('/', routes);
 
@@ -28,6 +26,11 @@ app.use((req, res, next) => {
     return res.status(404).json({
         message: error.message
     });
+});
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 

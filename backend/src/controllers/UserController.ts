@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import User from "../models/User";
-import {UserSchema} from "../shared/userValidator";
+import {UserSchema} from "../shared/schemaValidator";
 import RequestResponseMappings from "../shared/responseMapping";
 import UserController from "../controllers/UserController"
 import jsonwebtoken from 'jsonwebtoken';
@@ -16,7 +16,7 @@ export default {
     getUser: async (req: Request, res: Response) => {
         let user;
         try {
-            user = await User.findOne({email: req.body.user.email});
+            user = await User.findOne({email: req.query.email});
             return RequestResponseMappings.sendSuccessMessage(res, user);
           } catch (error) {
             console.error('Error retrieving user:', error);
@@ -24,7 +24,6 @@ export default {
           }
     },
     register: async (req: Request, res: Response) => {
-        debugger;
         try {
             let userValidationError: Joi.ValidationError | undefined = UserController.errorValidateUserSchema(req.body.user)
             if (userValidationError && "detail" in userValidationError) {
@@ -64,7 +63,7 @@ export default {
         return RequestResponseMappings.sendSuccessMessage(res, {
             token: jsonwebtoken.sign(
                 {email: user.email, password: user.password},
-                process.env.JWT_SECRET_KEY!),
+                'secretKey'),
             user: user
         })
     },

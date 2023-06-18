@@ -16,5 +16,4 @@ mongoose
     console.error('Failed to connect to MongoDB', error);
   });
 
-
 export default mongoose;

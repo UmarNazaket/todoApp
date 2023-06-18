@@ -50,7 +50,7 @@ export default {
         if (user && bcrypt.compareSync(req.body.user.password, user.password)) {
             return UserController.sendTokenWithPayload(res, user);
         }
-        return RequestResponseMappings.sendErrorMessage(res)
+        return RequestResponseMappings.sendErrorMessage(res, {message: 'Incorrect email or password'})
     },
     errorValidateUserSchema: (incomingUser: any):  Joi.ValidationError | undefined => {
         let userValidationError = UserSchema.validate(incomingUser).error

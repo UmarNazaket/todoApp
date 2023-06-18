@@ -22,9 +22,7 @@ export default {
     getTasks: async (req: Request, res: Response) => {
         try {
             const userId = req.query.userId;
-            console.log(userId)
             const tasks = await Task.find({ user: userId });
-            console.log(tasks);
             return RequestResponseMappings.sendSuccessMessage(res, tasks);
           } catch (error) {
             console.error('Error retrieving task:', error);

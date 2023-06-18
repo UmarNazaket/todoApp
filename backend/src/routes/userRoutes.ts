@@ -4,8 +4,8 @@ import UserController from '../controllers/UserController';
 
 const userRouter: Express = express();
 
-userRouter.post('/register',AuthenticationMiddleware.isAuthentication, UserController.register)
-userRouter.post('/login',AuthenticationMiddleware.isAuthentication, UserController.loginUser)
-userRouter.post('/getuser',AuthenticationMiddleware.isAuthentication, UserController.getUser)
+userRouter.post('/register', UserController.register);
+userRouter.post('/login',AuthenticationMiddleware.isAuthentication, UserController.loginUser);
+userRouter.get('/getuser',AuthenticationMiddleware.isAuthentication, UserController.getUser);
 
 export default userRouter;

@@ -4,7 +4,7 @@ import userRoutes from '../routes/userRoutes'
 
 const router: Express = express();
 
-router.use('/task', taskRoutes);
-router.use('/user', userRoutes);
+router.use('/tasks', taskRoutes);
+router.use('/users', userRoutes);
 
 export default router;

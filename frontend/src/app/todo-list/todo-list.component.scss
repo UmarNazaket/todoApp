@@ -1,0 +1,78 @@
+.tasks-container {
+  margin-top: 20px;
+}
+
+.tasks-heading {
+  text-align: center;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(21, 135, 223);
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.search-bar input {
+  width: 200px;
+  padding: 5px;
+  border-radius: 0.3rem;
+}
+
+.sort-buttons {
+  display: flex;
+}
+
+.sort-button {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+}
+
+.task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.task-actions {
+  display: flex;
+}
+
+.edit-button,
+.delete-button {
+  margin-left: 10px;
+  padding: 5px 1.2rem;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 0.4rem;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+}
+
+.edit-button{
+  background-color: #15407c;
+}
+
+.delete-button{
+  background-color: #9e1515;
+}

@@ -1,11 +1,20 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import routes from '../src/routes/index';
-import connection from "./connection";
+import connection from "./config/connection";
+import cors from 'cors';
 
 const app: Express = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(
+    cors({
+      origin: 'http://localhost:4200',
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    })
+  );
+  
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   // set the CORS policy
@@ -22,7 +31,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use('/', routes);
 
-// Move the 404 error middleware below the routes middleware
 app.use((req: Request, res: Response, next: NextFunction) => {
   const error = new Error('not found');
   return res.status(404).json({

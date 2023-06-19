@@ -7,16 +7,21 @@ export function createAuthorizationHeader() {
   return headers.set('authorization', 'bearer ' + (localStorage.getItem('token') || ''));
 }
 
-export function AutoLogout(err: any): void {
+export function AutoLogout(): void {
   const arr = ['token', 'userId'];
-  if (err instanceof HttpErrorResponse) {
-    if (err.status === 401) {
       arr.forEach((i) => {
         localStorage.removeItem(i);
       });
-
       window.location.href = '';
     }
+
+export function handleReponse(response: any) {
+  if(response.status === 401){
+    AutoLogout();
+  }else if(response.status === 500){
+    window.alert('Bad Request');
+  }else{
+    return;
   }
 }
 

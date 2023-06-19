@@ -6,7 +6,6 @@ export default {
     isAuthentication:(req:Request,res:Response,next:NextFunction)=>{
         try{
         let token=req.header('Authorization')?.split(' ')[1]
-        console.log("header ",req.header('Authorization'), "token ",token)
          req.body.tokenInfo=jsonwebtoken.verify(token!,'secretKey');
          next();
         }catch (e:any) {

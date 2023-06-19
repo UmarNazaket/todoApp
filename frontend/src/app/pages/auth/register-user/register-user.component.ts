@@ -44,7 +44,6 @@ export class RegisterUserComponent implements OnInit {
     const registerData = this.registerForm.value;
       this.userService.register(registerData).subscribe({
         next: (response) => {
-          console.log(response);
           if (response.status === 200) {
             localStorage.setItem('token', response.body.token);
             localStorage.setItem('userId', response.body.user._id);

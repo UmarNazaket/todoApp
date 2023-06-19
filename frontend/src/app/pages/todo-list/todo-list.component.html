@@ -5,6 +5,9 @@
       <input type="text" placeholder="Search by title" [(ngModel)]="searchQuery" (input)="searchTasks()" />
     </div>
     <div class="sort-buttons">
+      <button class="sort-button" (click)="this.isEditTask = false; this.showAddComponent = true;">Add New Task <i class="fa fa-plus"></i></button>
+    </div>
+    <div class="sort-buttons">
       <button class="sort-button" (click)="sortTasks('priority')">Priority <i class="fa fa-sort"></i></button>
       <button class="sort-button" (click)="sortTasks('dueDate')">Due Date <i class="fa fa-sort"></i></button>
       <button class="sort-button" (click)="sortTasks('status')">Status <i class="fa fa-sort"></i></button>

@@ -6,6 +6,7 @@ import UserController from "../controllers/UserController"
 import jsonwebtoken from 'jsonwebtoken';
 import Joi from "joi";
 import bcrypt from 'bcrypt';
+require('dotenv').config();
 
 interface _User {
     email: string;
@@ -63,7 +64,7 @@ export default {
         return RequestResponseMappings.sendSuccessMessage(res, {
             token: jsonwebtoken.sign(
                 {email: user.email, password: user.password},
-                'secretKey'),
+                process.env.JWT_SECRET_KEY!),
             user: user
         })
     },

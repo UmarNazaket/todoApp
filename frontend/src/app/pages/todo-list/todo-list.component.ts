@@ -45,7 +45,7 @@ export class TodoListComponent implements OnInit {
         task.title.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     }
-    this.sortTasks(this.sortKey); // Re-apply sorting after search
+    this.sortTasks(this.sortKey);
   }
 
   sortTasks(key: string) {
@@ -78,6 +78,7 @@ export class TodoListComponent implements OnInit {
 
   hideAddComponent(e: boolean){
     this.showAddComponent = false;
+    this.loadTasks()
   }
 
   deleteTask(id: string) {

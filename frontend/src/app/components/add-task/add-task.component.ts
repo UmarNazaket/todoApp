@@ -30,7 +30,7 @@ export class AddTaskComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['task'] && changes['task'].currentValue) {
+    if (this.isEditTask && changes['task'] && changes['task'].currentValue) {
       const currentTask = changes['task'].currentValue;
       if (this.taskForm && this.taskForm.controls) {
         const dueDate = new Date(currentTask.dueDate);
@@ -46,7 +46,6 @@ export class AddTaskComponent implements OnInit, OnChanges {
         });
       }
     }
-    // changes.prop contains the old and the new value...
   }
 
   ngOnInit() {
@@ -61,13 +60,13 @@ export class AddTaskComponent implements OnInit, OnChanges {
 
   onSubmit() {
     if (this.taskForm.valid) {
-      // Handle form submission and add task logic here
       let taskData = this.taskForm.value;
       taskData.user = localStorage.getItem('userId')
       if (this.isEditTask) {
         this.taskService.updateTask(this.taskForm.value).subscribe({
           next: (response) => {
             console.log(response);
+            this.taskForm.reset();
             this.closePopup.emit(true)
           },
           error: (e) => console.error(e),
@@ -78,6 +77,7 @@ export class AddTaskComponent implements OnInit, OnChanges {
       } else {
         this.taskService.addTask(this.taskForm.value).subscribe({
           next: (response) => {
+            this.taskForm.reset();
             this.closePopup.emit(true)
           },
           error: (e) => console.error(e),

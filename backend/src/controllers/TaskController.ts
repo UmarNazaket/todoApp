@@ -2,8 +2,7 @@ import {Request, Response} from "express";
 import { User } from "../models/User";
 import {TaskSchema} from "../shared/schemaValidator";
 import RequestResponseMappings from "../shared/responseMapping";
-import TaskController from "../controllers/TaskController"
-import jsonwebtoken from 'jsonwebtoken';
+import TaskController from "../controllers/TaskController";
 import Joi from "joi";
 import Task from "../models/Task";
 

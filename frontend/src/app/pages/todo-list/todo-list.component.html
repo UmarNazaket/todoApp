@@ -17,9 +17,15 @@
         <span>{{ task.dueDate | date:'dd MMM, yyyy'  }}</span>
         <div class="task-actions">
           <button class="edit-button" (click)="editTask(task)">Edit</button>
-          <button class="delete-button" (click)="deleteTask(task)">Delete</button>
+          <button class="delete-button" (click)="deleteTask(task._id)">Delete</button>
         </div>
       </div>
     </li>
   </ul>
+</div>
+
+<div class="new-task-parent" *ngIf="showAddComponent">
+  <div class="new-task-wrapper">
+    <app-add-task [isEditTask]="isEditTask" [task]="task" (closePopup)="hideAddComponent($event)"></app-add-task>
+  </div>
 </div>

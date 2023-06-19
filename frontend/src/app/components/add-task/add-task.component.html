@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Add New Task</h2>
+  <h2>{{ isEditTask ? 'Edit Task' : 'Add New Task' }}</h2>
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="title">Title</label>
@@ -37,6 +37,7 @@
     <div class="form-group">
       <label>Status</label>
       <select class="form-control" formControlName="status">
+        <option value="">Select Status</option>
         <option value="pending">Pending</option>
         <option value="inprogress">In Progress</option>
         <option value="complete">Complete</option>
@@ -45,6 +46,6 @@
         Status is required.
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Add Task</button>
+    <button type="submit" class="btn btn-primary">{{ isEditTask ? 'Update Task' : 'Add Task' }}</button>
   </form>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../../shared/global';
-import { TaskServiceService } from '../../shared/services/task-service.service';
+import { Task } from '../../../shared/model';
+import { TaskServiceService } from '../../../shared/services/task-service.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,6 +12,9 @@ export class TodoListComponent implements OnInit {
   filteredTasks: Task[] = [];
   searchQuery: string = '';
   sortKey: string = '';
+  isEditTask: boolean = false;
+  showAddComponent: boolean = false;
+  task!: Task;
 
   constructor(private taskService: TaskServiceService) { }
 
@@ -68,6 +71,13 @@ export class TodoListComponent implements OnInit {
 
 
   editTask(task: Task) {
+    this.task = task;
+    this.isEditTask = true;
+    this.showAddComponent = true;
+  }
+
+  hideAddComponent(e: boolean){
+    this.showAddComponent = false;
   }
 
   deleteTask(id: string) {

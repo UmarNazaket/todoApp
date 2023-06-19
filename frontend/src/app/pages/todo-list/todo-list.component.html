@@ -23,3 +23,9 @@
     </li>
   </ul>
 </div>
+
+<div class="new-task-parent" *ngIf="showAddComponent">
+  <div class="new-task-wrapper">
+    <app-add-task [isEditTask]="isEditTask" [task]="task" (closePopup)="hideAddComponent($event)"></app-add-task>
+  </div>
+</div>

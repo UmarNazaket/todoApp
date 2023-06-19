@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL, createAuthorizationHeader } from '../global';
 import { Observable } from 'rxjs';
+import { Task } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,11 @@ export class TaskServiceService {
 
   URL=BASE_URL;
 
-  addTask(user: {}): Observable<any> {
+  addTask(task: Task): Observable<any> {
     return this.httpClient.post(this.URL + '/tasks/addtask',
-    { user });
+    { task },
+    {headers: createAuthorizationHeader() }
+    );
   }
 
   deleteTask(taskId: string): Observable<any> {
@@ -23,9 +26,11 @@ export class TaskServiceService {
     });
   }
 
-  updateTask(user: {}): Observable<any> {
+  updateTask(task: Task): Observable<any> {
     return this.httpClient.put(this.URL + '/tasks/updatetask',
-    { user });
+    { task },
+    {headers: createAuthorizationHeader() }
+    );
   }
 
   getTask(userId: string): Observable<any> {

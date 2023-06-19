@@ -76,3 +76,15 @@
 .delete-button{
   background-color: #9e1515;
 }
+
+.new-task-parent{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0%;
+  padding: 1rem auto;
+  z-index: 100;
+  .new-task-wrapper{
+    background-color: #ffffff4f;
+  }
+}

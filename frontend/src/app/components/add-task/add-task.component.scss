@@ -7,6 +7,16 @@
   border-radius: 0.3rem;
   background-color: #fff;
 }
+.top-header{
+  display: flex;
+  justify-content: space-between;
+  i{
+    padding: 0.2rem 0.3rem;
+    border: 1px solid #000;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
 
 .form-group {
   margin-bottom: 20px;

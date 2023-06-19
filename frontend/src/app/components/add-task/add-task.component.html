@@ -1,5 +1,8 @@
 <div class="container">
-  <h2>{{ isEditTask ? 'Edit Task' : 'Add New Task' }}</h2>
+  <div class="top-header">
+    <h2>{{ isEditTask ? 'Edit Task' : 'Add New Task' }}</h2>
+    <div><i class="fa fa-times" (click)="closePopup.emit(true)"></i></div>
+  </div>
   <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="title">Title</label>

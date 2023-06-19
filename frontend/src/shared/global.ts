@@ -21,6 +21,7 @@ export function AutoLogout(err: any): void {
 }
 
 export interface Task {
+  _id: string;
   id: number;
   title: string;
   description: string;

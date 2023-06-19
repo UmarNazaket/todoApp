@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BASE_URL, createAuthorizationHeader } from './global';
+import { BASE_URL, createAuthorizationHeader } from '../global';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,9 +16,11 @@ export class TaskServiceService {
     { user });
   }
 
-  deleteTask(user: {}): Observable<any> {
-    return this.httpClient.delete(this.URL + '/tasks/deletetask',
-    {});
+  deleteTask(taskId: string): Observable<any> {
+    return this.httpClient.delete(this.URL + '/tasks/deletetask', {
+    params: { taskId },
+    headers: createAuthorizationHeader()
+    });
   }
 
   updateTask(user: {}): Observable<any> {

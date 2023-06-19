@@ -17,7 +17,7 @@
         <span>{{ task.dueDate | date:'dd MMM, yyyy'  }}</span>
         <div class="task-actions">
           <button class="edit-button" (click)="editTask(task)">Edit</button>
-          <button class="delete-button" (click)="deleteTask(task)">Delete</button>
+          <button class="delete-button" (click)="deleteTask(task._id)">Delete</button>
         </div>
       </div>
     </li>

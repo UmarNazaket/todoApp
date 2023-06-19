@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../shared/global';
-import { TaskServiceService } from '../../shared/task-service.service';
+import { TaskServiceService } from '../../shared/services/task-service.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -21,15 +21,16 @@ export class TodoListComponent implements OnInit {
 
   loadTasks() {
     const userId = localStorage.getItem('userId') || '';
-    this.taskService.getTask(userId).subscribe(
-      (response) => {
-        console.log(response)
+    this.taskService.getTask(userId).subscribe({
+      next: (response) => {
         this.tasks = response.body;
         this.filteredTasks = response.body;
       },
-      (error) => {
-        console.error('Error fetching tasks:', error);
-      }
+      error: (e) => {
+        console.error('Error fetching tasks:', e);
+      },
+      complete: () => {}
+    }
     );
   }
 
@@ -67,11 +68,20 @@ export class TodoListComponent implements OnInit {
 
 
   editTask(task: Task) {
-    // Implement the logic to edit a task
   }
 
-  deleteTask(task: Task) {
-    // Implement the logic to delete a task
+  deleteTask(id: string) {
+    this.taskService.deleteTask(id).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.loadTasks();
+      },
+      error: (e) => {
+        console.error('Error deleting task:', e);
+      },
+      complete: () => {}
+    }
+    );
   }
 
   getTaskItemStyle(status: string): object {

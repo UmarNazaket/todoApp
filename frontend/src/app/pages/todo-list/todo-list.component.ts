@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../../shared/model';
 import { TaskServiceService } from '../../../shared/services/task-service.service';
-import { handleReponse } from 'src/shared/global';
 
 @Component({
   selector: 'app-todo-list',
@@ -27,7 +26,6 @@ export class TodoListComponent implements OnInit {
     const userId = localStorage.getItem('userId') || '';
     this.taskService.getTask(userId).subscribe({
       next: (response) => {
-        handleReponse(response);
         this.tasks = response.body;
         this.filteredTasks = response.body;
       },
@@ -86,7 +84,6 @@ export class TodoListComponent implements OnInit {
   deleteTask(id: string) {
     this.taskService.deleteTask(id).subscribe({
       next: (response) => {
-        handleReponse(response);
         this.loadTasks();
       },
       error: (e) => {

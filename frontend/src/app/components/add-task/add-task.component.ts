@@ -2,7 +2,6 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TaskServiceService } from 'src/shared/services/task-service.service';
 import { Output, EventEmitter } from '@angular/core';
-import { handleReponse } from 'src/shared/global';
 
 @Component({
   selector: 'app-add-task',
@@ -66,7 +65,6 @@ export class AddTaskComponent implements OnInit, OnChanges {
       if (this.isEditTask) {
         this.taskService.updateTask(this.taskForm.value).subscribe({
           next: (response) => {
-            handleReponse(response);
             this.taskForm.reset();
             this.closePopup.emit(true)
           },
@@ -78,7 +76,6 @@ export class AddTaskComponent implements OnInit, OnChanges {
       } else {
         this.taskService.addTask(this.taskForm.value).subscribe({
           next: (response) => {
-            handleReponse(response);
             this.taskForm.reset();
             this.closePopup.emit(true)
           },

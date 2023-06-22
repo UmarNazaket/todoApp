@@ -3,16 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { TokenInterceptor } from '../shared/token.interceptor';
-
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { RegisterUserComponent } from './pages/auth/register-user/register-user.component';
 import { LoginUserComponent } from './pages/auth/login-user/login-user.component';
 import { TodoListComponent } from './pages/todo-list/todo-list.component';
 import { AddTaskComponent } from './components/add-task/add-task.component';
+
+import { ResponseInterceptor } from 'src/shared/interceptors/response.interceptor';
+import { TokenInterceptor } from '../shared/interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,11 @@ import { AddTaskComponent } from './components/add-task/add-task.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
       multi: true
     }
   ],

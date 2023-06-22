@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BASE_URL, createAuthorizationHeader } from '../global';
+import { BASE_URL } from '../global';
 import { Observable } from 'rxjs';
 import { Task } from '../model';
 

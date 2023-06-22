@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import jsonwebtoken from "jsonwebtoken";
 import RequestResponseMappings from "../responseMapping";
+require('dotenv').config();
 
 export default {
     isAuthentication:(req:Request,res:Response,next:NextFunction)=>{

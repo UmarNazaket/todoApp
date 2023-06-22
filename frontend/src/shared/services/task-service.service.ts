@@ -14,29 +14,25 @@ export class TaskServiceService {
 
   addTask(task: Task): Observable<any> {
     return this.httpClient.post(this.URL + '/tasks/addtask',
-    { task },
-    {headers: createAuthorizationHeader() }
+    { task }
     );
   }
 
   deleteTask(taskId: string): Observable<any> {
     return this.httpClient.delete(this.URL + '/tasks/deletetask', {
-    params: { taskId },
-    headers: createAuthorizationHeader()
+    params: { taskId }
     });
   }
 
   updateTask(task: Task): Observable<any> {
     return this.httpClient.put(this.URL + '/tasks/updatetask',
-    { task },
-    {headers: createAuthorizationHeader() }
+    { task }
     );
   }
 
   getTask(userId: string): Observable<any> {
     return this.httpClient.get(this.URL + '/tasks/gettask', {
-      params: { userId },
-      headers: createAuthorizationHeader()
+      params: { userId }
     });
   }
 

@@ -14,7 +14,7 @@
     <div class="form-group">
       <label for="description">Description</label>
       <input type="text" id="description" class="form-control" formControlName="description">
-      <div class="error-message" *ngIf="taskForm.controls['description'].invalid && taskForm.controls['description'].touched">
+      <div class="error-message" *ngIf="taskForm.controls['description'].invalid && taskForm.controls['description'].touched"> 
         Description is required.
       </div>
     </div>

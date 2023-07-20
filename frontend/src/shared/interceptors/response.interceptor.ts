@@ -25,6 +25,6 @@ export class ResponseInterceptor implements HttpInterceptor {
   }
 
   displaySystemError() {
-    window.alert('System error');
+    window.alert('Bad Request');
   }
 }

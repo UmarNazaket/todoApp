@@ -86,7 +86,6 @@ export class AddTaskComponent implements OnInit, OnChanges {
         });
       }
     } else {
-      // Mark all form fields as touched to display validation messages
       this.markAllFieldsAsTouched();
     }
   }

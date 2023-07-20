@@ -4,6 +4,7 @@ export interface User extends Document {
   name: string;
   email: string;
   password: string;
+  isAdmin: boolean
 }
 
 const userSchema = new Schema<User>({
@@ -18,6 +19,10 @@ const userSchema = new Schema<User>({
   },
   password: {
     type: String,
+    required: true
+  },
+  isAdmin: {
+    type: Boolean,
     required: true
   }
 });

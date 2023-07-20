@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../../shared/model';
 import { TaskServiceService } from '../../../shared/services/task-service.service';
+import { AutoLogout } from 'src/shared/global';
 
 @Component({
   selector: 'app-todo-list',
@@ -37,16 +38,7 @@ export class TodoListComponent implements OnInit {
     );
   }
 
-  searchTasks() {
-    if (this.searchQuery.trim() === '') {
-      this.filteredTasks = this.tasks;
-    } else {
-      this.filteredTasks = this.tasks.filter(task =>
-        task.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    }
-    this.sortTasks(this.sortKey);
-  }
+
 
   sortTasks(key: string) {
     this.sortKey = key;
@@ -115,6 +107,10 @@ export class TodoListComponent implements OnInit {
     return {
       'background-color': backgroundColor
     };
+  }
+
+  logout() {
+    AutoLogout();
   }
 
 }

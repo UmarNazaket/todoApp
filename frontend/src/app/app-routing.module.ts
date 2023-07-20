@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'todoapp',
     component: TodoListComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
   }
 ];
 

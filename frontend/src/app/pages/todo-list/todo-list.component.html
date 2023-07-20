@@ -1,8 +1,9 @@
 <div class="tasks-container">
   <h2 class="tasks-heading">Tasks</h2>
+  <div class="logout_btn"><button class="btn" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</button></div>
   <div class="task-header">
     <div class="search-bar">
-      <input type="text" placeholder="Search by title" [(ngModel)]="searchQuery" (input)="searchTasks()" />
+      <input type="text" placeholder="Search by title" [(ngModel)]="searchQuery"  />
     </div>
     <div class="sort-buttons">
       <button class="sort-button" (click)="this.isEditTask = false; this.showAddComponent = true;">Add New Task <i class="fa fa-plus"></i></button>
@@ -14,7 +15,7 @@
     </div>
   </div>
   <ul class="task-list">
-    <li *ngFor="let task of filteredTasks">
+    <li *ngFor="let task of filteredTasks | filterTasks: searchQuery">
       <div class="task-item" [ngStyle]="getTaskItemStyle(task.status)">
         <span>{{ task.title }}</span>
         <span>{{ task.dueDate | date:'dd MMM, yyyy'  }}</span>

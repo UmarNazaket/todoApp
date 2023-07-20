@@ -9,16 +9,17 @@ import bcrypt from 'bcrypt';
 require('dotenv').config();
 
 interface _User {
+    isAdmin: boolean;
     email: string;
     password: string;
 }
 
 export default {
-    getUser: async (req: Request, res: Response) => {
-        let user;
+    getUsers: async (req: Request, res: Response) => {
+        let users;
         try {
-            user = await User.findOne({email: req.query.email});
-            return RequestResponseMappings.sendSuccessMessage(res, user);
+            users = await User.find();
+            return RequestResponseMappings.sendSuccessMessage(res, users);
           } catch (error) {
             console.error('Error retrieving user:', error);
             return RequestResponseMappings.sendErrorMessage(res, "Couldn't find user")
@@ -38,7 +39,8 @@ export default {
                 {
                     name: req.body.user.name,
                     email: req.body.user.email,
-                    password: bcrypt.hashSync(req.body.user.password, 10)
+                    password: bcrypt.hashSync(req.body.user.password, 10),
+                    isAdmin: req.body.user.isAdmin || false
                 });
             await user.save();
             return UserController.sendTokenWithPayload(res, user);
@@ -63,7 +65,7 @@ export default {
     sendTokenWithPayload: (res: Response, user: _User) => {
         return RequestResponseMappings.sendSuccessMessage(res, {
             token: jsonwebtoken.sign(
-                {email: user.email, password: user.password},
+                {email: user.email, password: user.password, isAdmin: user.isAdmin || false},
                 process.env.JWT_SECRET_KEY!),
             user: user
         })

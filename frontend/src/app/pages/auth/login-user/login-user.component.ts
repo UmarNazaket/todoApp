@@ -30,18 +30,21 @@ export class LoginUserComponent implements OnInit {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
       this.message = '';
+      let isAdmin: boolean;
       this.userService.login(loginData).subscribe({
         next: (response) => {
+          console.log(response)
           if (response.status === 200) {
             localStorage.setItem('token', response.body.token);
             localStorage.setItem('userId', response.body.user._id);
+            isAdmin = response.body.user?.isAdmin || false;
           } else {
             this.message = response.description.message;
           }
         },
         error: (e) => console.error(e),
         complete: () => {
-          this.router.navigate(['/todoapp']);
+          isAdmin?this.router.navigate(['/admin']):this.router.navigate(['/todoapp']);
         }
       }
       );

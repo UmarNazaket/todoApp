@@ -6,3 +6,9 @@ export interface Task {
   dueDate: string;
   status: string;
 }
+
+export interface User {
+  name: string,
+  email: string,
+  isAdmin: boolean
+};

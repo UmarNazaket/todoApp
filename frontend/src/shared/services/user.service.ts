@@ -20,4 +20,8 @@ export class UserService {
     return this.httpClient.post(this.URL + '/users/register',
     { user });
   }
+
+  getUsers(): Observable<any> {
+    return this.httpClient.get(this.URL + '/users/getusers');
+  }
 }
